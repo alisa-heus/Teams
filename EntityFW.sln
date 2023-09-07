@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFW", "EntityFW\EntityFW.csproj", "{353F0009-3E24-41A8-B455-D62F13BC8510}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientOrdersFW", "ClientOrdersFW\ClientOrdersFW.csproj", "{90FA4A0A-3AFB-4C8E-AFAB-639B9A9D78AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{353F0009-3E24-41A8-B455-D62F13BC8510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{353F0009-3E24-41A8-B455-D62F13BC8510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{353F0009-3E24-41A8-B455-D62F13BC8510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{353F0009-3E24-41A8-B455-D62F13BC8510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90FA4A0A-3AFB-4C8E-AFAB-639B9A9D78AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FA4A0A-3AFB-4C8E-AFAB-639B9A9D78AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FA4A0A-3AFB-4C8E-AFAB-639B9A9D78AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FA4A0A-3AFB-4C8E-AFAB-639B9A9D78AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5EC9D9D-D7B1-4AFF-89F6-075CD84C4BF0}
+	EndGlobalSection
+EndGlobal
