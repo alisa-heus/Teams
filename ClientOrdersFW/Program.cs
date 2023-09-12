@@ -67,7 +67,4 @@ using (var context = new ClientOrdersDbContext())
     var users1 = context.Users.ToList();
     var orders1 = context.Orders.ToList();
     var products1 = context.Products.ToList();
-
-
-
 }

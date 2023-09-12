@@ -1,9 +1,10 @@
 ﻿namespace EntityFW.Models
 {
-    public class Player : BaseModel
+    public class Player : BaseModel 
     {
-        public string NickName { get; set; }
-        public long TeamId { get; set; }
-        public Team Team { get; set; }
+        public int PlayerID { get; set; }
+        public string? NickName { get; set; }
+        public int TeamID { get; set; }
+        public virtual Team? Team { get; set; }
     }
 }

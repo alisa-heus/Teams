@@ -2,8 +2,9 @@
 {
     public class Team : BaseModel
     {
-        public string Name { get; set; }
-        public double TeamScore { get; set; }
-        public List<Player> Players { get; }
+        public int TeamID { get; set; }
+        public string? Name { get; set; }
+        public int TeamSize { get; set; }
+        public virtual List<Player>? Players { get; set; }
     }
 }
