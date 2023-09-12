@@ -12,6 +12,7 @@ using (var context = new TeamsRegistrationDbContext())
 {
     while (true)
     {
+        //console
         Console.WriteLine("Enter a command");
         string command = Console.ReadLine();
         if (command != null)
