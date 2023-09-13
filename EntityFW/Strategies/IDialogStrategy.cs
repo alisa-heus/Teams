@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityFW
+namespace EntityFW.Strategies
 {
     internal interface IDialogStrategy
     {

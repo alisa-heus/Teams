@@ -15,7 +15,7 @@ namespace EntityFW
 
         public TeamsRegistrationDbContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
