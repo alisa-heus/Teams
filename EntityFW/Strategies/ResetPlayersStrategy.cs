@@ -11,7 +11,12 @@ namespace EntityFW.Strategies
     {
         public void Handle(TeamsRegistrationDbContext context)
         {
-            context.Players.ExecuteDelete();
+            var playersToDelete = context.Players.ToList();
+
+            foreach (var player in playersToDelete)
+            {
+                context.Players.Remove(player);
+            }
             context.SaveChanges();
             Console.WriteLine("You sucessfully deleted all the players.");
             return;

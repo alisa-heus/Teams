@@ -16,15 +16,15 @@ namespace EntityFW.Strategies
             {
                 Console.WriteLine("Cool!, how many players are you today?");
                 int playersAmount = Convert.ToInt32(Console.ReadLine());
+                ProgressInfo.totalPlayers = playersAmount;
 
-
-                if (playersAmount % 3 == 0)
+                if (playersAmount % 6 == 0)
                 {
                     Console.WriteLine("You are playing triples today!");
                     ProgressInfo.teamsSize = 3;
                     CreateTeams(context, playersAmount / 3);
                 }
-                else if (playersAmount % 2 == 0)
+                else if (playersAmount % 4 == 0)
                 {
                     Console.WriteLine("You are playing doubles today!");
                     ProgressInfo.teamsSize = 2;
@@ -46,10 +46,6 @@ namespace EntityFW.Strategies
 
         private void CreateTeams(TeamsRegistrationDbContext context, int numberOfTeams)
         {
-            using(context)
-            {
-                context.Teams.ExecuteDelete();
-
                 for (int i = 1; i <= numberOfTeams; i++)
                 {
                     var team = new Team
@@ -60,8 +56,7 @@ namespace EntityFW.Strategies
                 }
 
                 ProgressInfo.teamsCreated = true;
-                context.SaveChanges();
-            }   
+                context.SaveChanges(); 
         }
     }
 }

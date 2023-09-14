@@ -11,7 +11,7 @@ namespace EntityFW.Strategies
         public void Handle(TeamsRegistrationDbContext context)
         {
             Console.WriteLine("Invalid command.");
-            Console.WriteLine("Available commands: \n /addplayer \n /addteam \n /resetteams \n /resetplayers");
+            Console.WriteLine("Available commands: \n /addplayers \n /addteams \n /resetteams \n /resetplayers \n /checkteams");
         }
     }
 }

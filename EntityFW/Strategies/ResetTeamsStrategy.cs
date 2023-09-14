@@ -11,12 +11,23 @@ namespace EntityFW.Strategies
     {
         public void Handle(TeamsRegistrationDbContext context)
         {
-                context.Teams.ExecuteDelete();
-                ProgressInfo.teamsSize = 0;
-                context.Players.ExecuteDelete();
-                context.SaveChanges();
-                Console.WriteLine("You sucessfully deleted teams and players.");
-                return;
+            var playersToDelete = context.Players.ToList();
+            var teamsToDelete = context.Teams.ToList();
+
+            foreach (var player in playersToDelete)
+            {
+                context.Players.Remove(player);
+            }
+
+            foreach (var team in teamsToDelete)
+            {
+                context.Teams.Remove(team);
+            }
+
+            ProgressInfo.teamsCreated = false;
+            context.SaveChanges();
+            Console.WriteLine("You sucessfully deleted all the teams and players.");
+            return;
         }
     }
 }
