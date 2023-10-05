@@ -18,7 +18,7 @@ namespace EntityFW.Strategies
                 int playersAmount = Convert.ToInt32(Console.ReadLine());
                 ProgressInfo.totalPlayers = playersAmount;
 
-                if (playersAmount % 6 == 0)
+                if (playersAmount % 3 == 0 && playersAmount > 3)
                 {
                     Console.WriteLine("You are playing triples today!");
                     ProgressInfo.teamsSize = 3;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityFW.Strategies
 {
-    internal class DefaultStrategy : IDialogStrategy
+    internal class DefaultStrategy : Strategies.IDialogStrategy
     {
         public void Handle(TeamsRegistrationDbContext context)
         {
