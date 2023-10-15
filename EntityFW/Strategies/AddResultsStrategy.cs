@@ -8,7 +8,7 @@ namespace EntityFW.Strategies
 {
     internal class AddResultsStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             if(!ProgressInfo.gamesCreated)
             {
@@ -19,7 +19,8 @@ namespace EntityFW.Strategies
             {
                 Console.WriteLine($"For Game {game.GameID}: {game.ATeamName}:{game.BTeamName} enter score:");
 
-                string score = Console.ReadLine();
+                // string score = Console.ReadLine();
+                string score = "";
                 string[] results = score.Split(":"); 
                 if (Convert.ToInt32(results[0])  > Convert.ToInt32(results[1]))
                 {
@@ -34,11 +35,13 @@ namespace EntityFW.Strategies
             context.SaveChanges();
             Console.WriteLine("You successfully added the results");
             Console.WriteLine("Your results:");
-
+            string resultsMsg = "";
             foreach (var game in context.Games)
             {
-                Console.WriteLine($"For Game {game.GameID}: {game.ATeamName}:{game.BTeamName} - {game.ATeamScore}:{game.BTeamScore}");
+                //Console.WriteLine($"For Game {game.GameID}: {game.ATeamName}:{game.BTeamName} - {game.ATeamScore}:{game.BTeamScore}");
+                resultsMsg += $"For Game {game.GameID}: {game.ATeamName}:{game.BTeamName} - {game.ATeamScore}:{game.BTeamScore}";
             }
+            return resultsMsg;
         }
     }
 }

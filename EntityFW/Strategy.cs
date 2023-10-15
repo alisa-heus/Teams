@@ -7,7 +7,7 @@ using EntityFW.Strategies;
 
 namespace EntityFW
 {
-    internal static class Strategy
+    public static class Strategy
     {
 
         public static IDialogStrategy ChooseStrategy(string message)

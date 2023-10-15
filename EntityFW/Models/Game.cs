@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityFW.Models
 {
-    internal class Game : BaseModel
+    public class Game : BaseModel
     {
         public int GameID { get; set; }
         public int ATeamID { get; set; }

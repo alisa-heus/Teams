@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityFW
 {
-    internal class TeamsRegistrationDbContext : DbContext
+    public class TeamsRegistrationDbContext : DbContext
     {
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
@@ -17,6 +17,12 @@ namespace EntityFW
 
         public TeamsRegistrationDbContext()
         {
+            
+        }
+
+        public void DeleteDbContext()
+        {
+            Console.WriteLine("Delete DB");
             Database.EnsureDeleted();
             Database.EnsureCreated();
         }

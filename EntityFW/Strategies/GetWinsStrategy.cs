@@ -11,7 +11,7 @@ namespace EntityFW.Strategies
 {
     internal class GetWinsStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             var teamScoresDictionary = new Dictionary<string, int>();
 
@@ -36,30 +36,35 @@ namespace EntityFW.Strategies
                     teamScoresDictionary.Add(game.BTeamName, game.BTeamScore);
                 }
             }
-            Console.WriteLine("Teams Scores:");
+            // Console.WriteLine("Teams Scores:");
             var sortedDictionary = teamScoresDictionary.OrderByDescending(pair => pair.Value);
+
 
             foreach (var item in sortedDictionary)
             {
-                Console.WriteLine($"Team {item.Key} score: {item.Value}");
+            //    Console.WriteLine($"Team {item.Key} score: {item.Value}");
             }
 
-            
+            string result = "";
             var winningTeamName = sortedDictionary.First().Key;
-
             foreach (Team team in context.Teams)
             {
                 if(team.Name ==  winningTeamName)
                 {
-                    Console.WriteLine($"The winner team is {team.Name}! Congratulations: ");
+                    result += $"The winner team is {team.Name}! Congratulations: ";
+                    //Console.WriteLine($"The winner team is {team.Name}! Congratulations: ");
                     foreach (Player p in team.Players)
                     {
-                        Console.Write(p.NickName);
-                        Console.Write(' ');
+                        //Console.Write(p.NickName);
+                        result += p.NickName;
+                        //Console.Write(' ');
+                        result += ' ';
                     }
                 }
                 Console.WriteLine();
+
             }
+            return result;
         }
     }
 }

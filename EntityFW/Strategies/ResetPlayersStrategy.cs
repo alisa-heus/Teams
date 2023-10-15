@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace EntityFW.Strategies
 {
-    internal class ResetPlayersStrategy : IDialogStrategy
+    public class ResetPlayersStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             var playersToDelete = context.Players.ToList();
             var gamesToDelete = context.Games.ToList();
@@ -29,8 +29,8 @@ namespace EntityFW.Strategies
                 ProgressInfo.gamesCreated = false;
             }
             context.SaveChanges();
-            Console.WriteLine("You sucessfully deleted all the players.");
-            return;
+            // Console.WriteLine("You sucessfully deleted all the players.");
+            return "You sucessfully deleted all the players.";
         }
     }
 }

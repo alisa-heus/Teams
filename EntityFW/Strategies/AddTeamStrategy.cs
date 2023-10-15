@@ -10,38 +10,51 @@ namespace EntityFW.Strategies
 {
     internal class AddTeamStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             if (ProgressInfo.teamsCreated == false)
             {
-                Console.WriteLine("Cool!, how many players are you today?");
-                //TryParse? 
-                int playersAmount = Convert.ToInt32(Console.ReadLine());
-                ProgressInfo.totalPlayers = playersAmount;
-
-                if (playersAmount % 3 == 0 && playersAmount > 3)
+                if (string.IsNullOrEmpty(userMsgParams))
                 {
-                    Console.WriteLine("You are playing triples today!");
-                    ProgressInfo.teamsSize = 3;
-                    CreateTeams(context, playersAmount / 3);
+                    // Console.WriteLine("Cool!, how many players are you today?");
+                    return "Cool!, how many players are you today?";
                 }
-                else if (playersAmount % 4 == 0)
+                int playersAmount = 0;
+                if (int.TryParse(userMsgParams, out playersAmount))
                 {
-                    Console.WriteLine("You are playing doubles today!");
-                    ProgressInfo.teamsSize = 2;
-                    CreateTeams(context, playersAmount / 2);
+                    ProgressInfo.totalPlayers = Math.Abs(playersAmount);
+
+                    if (playersAmount % 3 == 0 && playersAmount > 3)
+                    {
+                        // Console.WriteLine("You are playing triples today!");
+                        ProgressInfo.teamsSize = 3;
+                        CreateTeams(context, playersAmount / 3);
+                        return "You are playing triples today!";
+                    }
+                    else if (playersAmount % 4 == 0)
+                    {
+                        // Console.WriteLine("You are playing doubles today!");
+                        ProgressInfo.teamsSize = 2;
+                        CreateTeams(context, playersAmount / 2);
+                        return "You are playing doubles today!";
+                    }
+                    else
+                    {
+                        // Console.WriteLine("You are playing tete-a-tete today!");
+                        ProgressInfo.teamsSize = 1;
+                        CreateTeams(context, playersAmount);
+                        return "You are playing tete-a-tete today!";
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("You are playing tete-a-tete today!");
-                    ProgressInfo.teamsSize = 1;
-                    CreateTeams(context, playersAmount);
+                    return "Please enter the number of players.";
                 }
             }
             else
             {
-                Console.WriteLine("You already created teams.\nEnter /resetteams to delete teams and players or /addplayer to add a player.");
-                return;
+                // Console.WriteLine("You already created teams.\nEnter /resetteams to delete teams and players or /addplayer to add a player.");
+                return "You already created teams.\nEnter /resetteams to delete teams and players or /addplayer to add a player.";
             }
         }
 

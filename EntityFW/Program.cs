@@ -20,7 +20,8 @@ using (var context = new TeamsRegistrationDbContext())
         if (command != null)
         {
             IDialogStrategy strategy = Strategy.ChooseStrategy(command);
-            strategy.Handle(context);
+            string userParams = "";
+            strategy.Handle(context, userParams);
         }
     }
 }

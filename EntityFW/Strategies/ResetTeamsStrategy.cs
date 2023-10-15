@@ -9,7 +9,7 @@ namespace EntityFW.Strategies
 {
     internal class ResetTeamsStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             var playersToDelete = context.Players.ToList();
             var teamsToDelete = context.Teams.ToList();
@@ -37,8 +37,8 @@ namespace EntityFW.Strategies
 
             ProgressInfo.teamsCreated = false;
             context.SaveChanges();
-            Console.WriteLine("You sucessfully deleted all the teams and players.");
-            return;
+            // Console.WriteLine("You sucessfully deleted all the teams and players.");
+            return "You sucessfully deleted all the teams and players.";
         }
     }
 }

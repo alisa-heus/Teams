@@ -9,21 +9,22 @@ namespace EntityFW.Strategies
 {
     internal class GameOrganizerStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             if(ProgressInfo.teamsCreated != false)
             {
                 List<Game> games = new List<Game>();
-                ArrangeGamesForTeams(context, games);
+                return ArrangeGamesForTeams(context, games);
+                 
             }
             else
             {
                 Console.WriteLine("Create teams first");
-                return;
+                return "Create teams first";
             }
         }
 
-        private void ArrangeGamesForTeams(TeamsRegistrationDbContext context, List<Game> games)
+        private string ArrangeGamesForTeams(TeamsRegistrationDbContext context, List<Game> games)
         {
             if(!ProgressInfo.gamesCreated)
             {
@@ -44,22 +45,27 @@ namespace EntityFW.Strategies
 
                 ProgressInfo.gamesCreated = true;
                 context.SaveChanges();
-                Console.WriteLine("Games:");
+                // Console.WriteLine("Games:");
 
+                string result = "";
                 foreach (var game in context.Games)
                 {
-                    Console.WriteLine($"Game {game.GameID}: {game.ATeamName} is playng against {game.BTeamName}");
+                    // Console.WriteLine($"Game {game.GameID}: {game.ATeamName} is playng against {game.BTeamName}");
+                    result += $"Game {game.GameID}: {game.ATeamName} is playng against {game.BTeamName}";
                 }
+                return result;
             } 
             else
             {
-                Console.WriteLine("Games already exist.");
-                Console.WriteLine("Games:");
-
+                //Console.WriteLine("Games already exist.");
+                // Console.WriteLine("Games:");
+                string result = "";
                 foreach (var game in context.Games)
                 {
-                    Console.WriteLine($"Game {game.GameID}: {game.ATeamName} is playng against {game.BTeamName}");
+                    // Console.WriteLine($"Game {game.GameID}: {game.ATeamName} is playng against {game.BTeamName}");
+                    result += $"Game {game.GameID}: {game.ATeamName} is playng against {game.BTeamName}";
                 }
+                return result;
             }
         }
     }

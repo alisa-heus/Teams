@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EntityFW.Strategies
 {
-    internal interface IDialogStrategy
+    public interface IDialogStrategy
     {
-        void Handle(TeamsRegistrationDbContext context);
+        string Handle(TeamsRegistrationDbContext context, string userMsgParams);
     }
 }

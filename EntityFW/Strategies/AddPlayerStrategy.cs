@@ -9,24 +9,49 @@ namespace EntityFW.Strategies
 {
     internal class AddPlayerStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             int playersLeftToAdd = ProgressInfo.totalPlayers;
 
             if (ProgressInfo.teamsCreated == false)
             {
-                Console.WriteLine("Please, add teams first.");
-                return;
+                // Console.WriteLine("Please, add teams first.");
+                return "Please, add teams first.";
             }
 
-            Console.WriteLine("Let's start adding players!");
+            //Console.WriteLine("Let's start adding players!");
+            if(string.IsNullOrEmpty(userMsgParams))
+            {
+                return "Enter player's nick name!";
+            } else
+            {
+                string playerName = userMsgParams;
+                Team randomTeam = FindRandomTeam(context);
+                if (randomTeam.Players.Count < ProgressInfo.teamsSize)
+                {
+                    var player = new Player()
+                    {
+                        NickName = playerName,
+                        TeamID = randomTeam.TeamID
+                    };
+                    context.Players.Add(player);
+                    playersLeftToAdd--;
+                    context.SaveChanges();
+                    //Console.WriteLine($"You sucessfully added {playerName} to a {randomTeam.Name}");
+                    return $"You sucessfully added {playerName} to a {randomTeam.Name}";
+                } else
+                {
+                    return "No more players can be added.";
+                }
+            }
 
+            /*
             while (playersLeftToAdd > 0)
             {
-                Console.WriteLine("Enter player's nick name!");
-                string playerName = Console.ReadLine();
-
-                while(true)
+                //Console.WriteLine("Enter player's nick name!");
+                // string playerName = Console.ReadLine();
+                string playerName = userMsgParams;
+                while (true)
                 {
                     Team randomTeam = FindRandomTeam(context);
 
@@ -40,14 +65,15 @@ namespace EntityFW.Strategies
                         context.Players.Add(player);
                         playersLeftToAdd--;
                         context.SaveChanges();
-                        Console.WriteLine($"You sucessfully added {playerName} to a {randomTeam.Name}");
+                        //Console.WriteLine($"You sucessfully added {playerName} to a {randomTeam.Name}");
                         break;
                     }
                 }    
             }
-
-            Console.WriteLine("Teams are full!");
-            Console.WriteLine("To review teams enter /checkteams");
+            return "Teams are full!" + "To review teams enter /checkteams";
+            // Console.WriteLine("Teams are full!");
+            // Console.WriteLine("To review teams enter /checkteams");
+            */
         }
 
         private Team FindRandomTeam(TeamsRegistrationDbContext context)

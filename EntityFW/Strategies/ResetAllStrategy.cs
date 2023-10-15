@@ -8,7 +8,7 @@ namespace EntityFW.Strategies
 {
     internal class ResetAllStrategy : IDialogStrategy
     {
-        public void Handle(TeamsRegistrationDbContext context)
+        public string Handle(TeamsRegistrationDbContext context, string userMsgParams)
         {
             var playersToDelete = context.Players.ToList();
             var teamsToDelete = context.Teams.ToList();
@@ -38,8 +38,8 @@ namespace EntityFW.Strategies
             ProgressInfo.gamesCreated = false;
 
             context.SaveChanges();
-            Console.WriteLine("Reset was successful.");
-            return;
+            //Console.WriteLine("Reset was successful.");
+            return "Reset was successful.";
         }
     }
 }
