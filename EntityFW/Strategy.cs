@@ -9,6 +9,7 @@ namespace EntityFW
 {
     internal static class Strategy
     {
+
         public static IDialogStrategy ChooseStrategy(string message)
         {
             if(message.ToLower().Trim() == "/addplayers")
@@ -27,9 +28,25 @@ namespace EntityFW
             {
                 return new ResetPlayersStrategy();
             }
-            else if (message.ToLower().Trim() == "/checkteams")
+            else if(message.ToLower().Trim() == "/checkteams")
             {
                 return new CheckTeamsStrategy();
+            }
+            else if(message.ToLower().Trim() == "/play")
+            {
+                return new GameOrganizerStrategy();
+            }
+            else if (message.ToLower().Trim() == "/addresults")
+            {
+                return new AddResultsStrategy();
+            }
+            else if (message.ToLower().Trim() == "/getwins")
+            {
+                return new GetWinsStrategy();
+            }
+            else if (message.ToLower().Trim() == "/resetall")
+            {
+                return new ResetAllStrategy();
             }
             else
             {

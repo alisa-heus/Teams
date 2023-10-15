@@ -11,5 +11,6 @@ namespace EntityFW
         public static bool teamsCreated = false;
         public static int teamsSize = 0;
         public static int totalPlayers = 0;
+        public static bool gamesCreated = false;
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EntityFW.Strategies
 {
-    internal class ResetTeamsStrategy : IDialogStrategy
+    internal class ResetAllStrategy : IDialogStrategy
     {
         public void Handle(TeamsRegistrationDbContext context)
         {
@@ -25,19 +24,21 @@ namespace EntityFW.Strategies
                 context.Teams.Remove(team);
             }
 
-            if(ProgressInfo.gamesCreated)
+            if (ProgressInfo.gamesCreated)
             {
                 foreach (var game in gamesToDelete)
                 {
                     context.Games.Remove(game);
                 }
-
-                ProgressInfo.gamesCreated = false;
             }
 
             ProgressInfo.teamsCreated = false;
+            ProgressInfo.teamsSize = 0;
+            ProgressInfo.totalPlayers = 0;
+            ProgressInfo.gamesCreated = false;
+
             context.SaveChanges();
-            Console.WriteLine("You sucessfully deleted all the teams and players.");
+            Console.WriteLine("Reset was successful.");
             return;
         }
     }

@@ -15,6 +15,7 @@ namespace EntityFW.Strategies
             if (ProgressInfo.teamsCreated == false)
             {
                 Console.WriteLine("Cool!, how many players are you today?");
+                //TryParse? 
                 int playersAmount = Convert.ToInt32(Console.ReadLine());
                 ProgressInfo.totalPlayers = playersAmount;
 

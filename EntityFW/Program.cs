@@ -3,6 +3,7 @@ using EntityFW.Models;
 using EntityFW.Strategies;
 using Microsoft.EntityFrameworkCore;
 
+
 //Petanque is a French game that can be played with 3, 2 or 1 player in the team. 
 //I plan to create a program that will randomly divide players into teams for their training.
 //The program will ask the user for a number of players that came to train today.
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 //When the list of players is full, it will randomly assign players to different teams. 
 using (var context = new TeamsRegistrationDbContext())
 {
+
     while (true)
     {
         Console.WriteLine("Enter a command");
